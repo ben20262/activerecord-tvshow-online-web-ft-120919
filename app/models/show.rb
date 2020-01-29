@@ -7,4 +7,21 @@ class Show < ActiveRecord::Base
     max = self.highest_rating
     Show.find_by(rating: max)
   end
+
+  def self.lowest_rating
+    Show.minimum(:rating)
+  end
+
+  def self.least_popular_show
+    min = self.lowest_rating
+    Show.find_by(rating: min)
+  end
+
+  def self.ratings_sum
+    Show.sum(:rating)
+  end
+
+  def self.popular_shows
+    Show.where("rating > 5")
+  end
 end
